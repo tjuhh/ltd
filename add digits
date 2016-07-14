@@ -16,10 +16,13 @@ public class Solution {
     }
 }
 #这是第二种做法
-public static int compute( int n ) {
+public class Solution {
+    public static int compute( int n ) {
     return n - 9 * ((n - 1) / 9);
 }
-public static int add_digits( int n ) {
-    return n < 10 ? n : compute(n % 10 + compute(n / 10));
+    public int addDigits(int n) {
+        return n < 10 ? n : compute(n % 10 + compute(n / 10));
+      
+    }
 }
 有个东西叫digit root；compute是那个公式，可以看一下Wikipedia
