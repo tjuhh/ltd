@@ -1,0 +1,25 @@
+# : ? 注意一下
+我用的是递归，就是/10得的商在一次次除10，最后再和余数一个个加回去
+public class Solution {
+    public int addDigits(int num) {
+        if(num<10)
+        return num;
+        else
+        {int a,b,c;
+        a=num/10;
+        b=num%10;
+        if(a>=10)
+        a=addDigits(a);
+        c=a+b;
+        return (c<10)? c :(c/10+c%10);
+        }
+    }
+}
+#这是第二种做法
+public static int compute( int n ) {
+    return n - 9 * ((n - 1) / 9);
+}
+public static int add_digits( int n ) {
+    return n < 10 ? n : compute(n % 10 + compute(n / 10));
+}
+有个东西叫digit root；compute是那个公式，可以看一下Wikipedia
