@@ -1,0 +1,13 @@
+#本质就是4的倍数，赢不了，因为4的时候赢不了，8的时候，无论你怎么取，对方都能让你变成该你取得时候四个，如果是9,10,11，你可以让对方变成8个
+同理你可以拓展到12，对方总有办法让你去的时候是8个。
+public class Solution {
+    public boolean canWinNim(int n) {
+        
+        
+        if (n%4==0)
+        return false;
+        else 
+        return true;
+        
+    }
+}
