@@ -2,17 +2,15 @@
 我用的是递归，就是/10得的商在一次次除10，最后再和余数一个个加回去
 public class Solution {
     public int addDigits(int num) {
-        if(num<10)
-        return num;
-        else
-        {int a,b,c;
+      
+        int a,b,c;
         a=num/10;
         b=num%10;
         if(a>=10)
         a=addDigits(a);
         c=a+b;
         return (c<10)? c :(c/10+c%10);
-        }
+        
     }
 }
 #这是第二种做法
