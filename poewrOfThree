@@ -1,0 +1,18 @@
+/*思路就是如果n%3的余数为0，再将n/3，如果不是3的倍数，那就用原先的数。如果有一次除完3后得1，证明是3的mi；比如说1,3,27，可以自己想一下
+*/
+public class Solution {
+
+    public boolean isPowerOfThree(int n) {
+     if(n<0)
+     return false;
+     
+     while(n%3==0)
+     n=n/3;
+ return n==1;
+     
+ }
+}
+ /*还有一种是数学方法
+ 参见网址https://discuss.leetcode.com/topic/33536/a-summary-of-all-solutions-new-method-included-at-15-30pm-jan-8th
+ */
+ 
