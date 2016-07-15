@@ -1,0 +1,16 @@
+/*基本思路就是先把原先的string按照character排序，然后进行比较。 toCharArray 可以把string转换成char数组， 
+Arrays.sort(ch); can sort char[] ch alphabetically
+String.valueOf(ch ) can change the char array ch[] to a string
+*/
+public class Solution {
+    public boolean isAnagram(String s, String t) {
+        char[] stoChar= s.toCharArray();
+        char[] ttoChar=t.toCharArray();
+        Arrays.sort(stoChar);
+        Arrays.sort(ttoChar);
+        String sorteds=String.valueOf(stoChar);
+        String sortedt=String.valueOf(ttoChar);
+        return sorteds.equals(sortedt);
+        
+    }
+}
