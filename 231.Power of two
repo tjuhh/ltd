@@ -1,0 +1,50 @@
+/*It take me some time since I mistakenly add an extra else. Power of 2 means , if it is expressed in binary way, 
+the number of 1 should appear only once
+*/
+
+public class Solution {
+    public boolean isPowerOfTwo(int n) {
+        boolean tag=false;
+        if(n<=0)
+        return tag;
+      
+      
+      
+        else
+        {    
+            for(int i=0;i<32;i++)
+             {if((n&1)==1)  # You cannot write if(n&1==1) 注意一下优先级
+             { if(tag==false)
+              tag=true;
+              else
+              return false;
+             }
+              #else  It should be deleted
+              n=n>>1; #You can write like n>>; 
+                 
+             }
+            
+        }
+        return tag;
+        
+    }
+}
+Here is another way to do it
+public class Solution
+{
+    public boolean isPowerOfTwo(int n)
+    { if(n<=0)
+      return false;
+      else{
+          int oneBitWise=0;
+          for (int i=0;i<32;i++)
+          {if((n&1)==1)
+           oneBitWise++;
+           n=n>>1;      
+          }
+          return oneBitWise==1;
+      }
+    
+    }
+    
+}
