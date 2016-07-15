@@ -1,0 +1,37 @@
+/* I use square_digit to get the sume of the square of the digits,
+then in the isHappy we build a set, every time the sum obtained by square_digit, we will check if it is in the hashset until the number 
+becomes 1. If the number successfully becomes 1, it is a happy number. Otherwise, it shows in the hashset, it will be not a happy number
+hashset.add() returns a boolean value, if the item successfully adds in the set, it will return true, otherwise it will return false.
+
+*/
+public class Solution {
+    public int square_digit(int n)
+    {   
+    int sum=0;
+    int i=0;
+        for(i=0;i<32;i++)
+        {   int residual=n%10;
+        if(n==0)
+        break;
+            sum+=residual*residual;
+            n=n/10;
+        }
+        return sum;
+         
+        
+    }
+    public boolean isHappy(int n) {
+        HashSet<Integer> res = new HashSet<Integer>();
+        if(n<=0)
+        return false;
+        
+        while(n!=1)
+        {
+        if(res.add(n))
+        n=square_digit(n);
+        else
+        return false;
+        }
+        return true;
+    }
+}
