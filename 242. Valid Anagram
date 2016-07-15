@@ -14,3 +14,19 @@ public class Solution {
         
     }
 }
+第二种方法，注意java for里面i需要声明的，总忘。。。。还有charAt（）了解一下 unicode8最多只有256所以i的范围取256
+public class Solution {
+    public boolean isAnagram(String s, String t) {
+     if(s==null| t==null|s.length()!=t.length())
+     return false;
+     int lookup[]=new int[256];
+     for (int i=0;i<s.length();i++)
+     {lookup[(int)(s.charAt(i))]++;
+     lookup[(int)(t.charAt(i))]--;
+     }
+     for(int i=0;i<256;i++)
+        if(lookup[i]!=0)
+        return false;
+        return true;
+    }
+}
