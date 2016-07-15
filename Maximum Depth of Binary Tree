@@ -11,4 +11,20 @@ public class Solution {
   
 }
 }
-/*需要注意static只能在类里定义，不能在method重定义。否者会报错，“illegal start of expression”
+/*需要注意static只能在类里定义，不能在method重定义。否者会报错，“illegal start of expression” 注意一下？：给变量赋值的用法
+public class Solution {
+    static int depth;
+    public int maxDepth(TreeNode root) {
+   
+
+ 
+
+   depth=(root==null)? 0: Math.max(maxDepth(root.left), maxDepth(root.right))+1;
+   return depth;
+   
+   
+      
+  
+}
+}
+*/
