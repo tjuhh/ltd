@@ -1,5 +1,6 @@
 /*
 Becareful about the second loop, in addition, in the first loop, do not forget to minus 'A'
+Another thing is that for character we need to use single quote; while for string we need to use double quote" "
 */
 public class Solution {
     public int titleToNumber(String s) {
