@@ -31,3 +31,14 @@ if(nums[i]==nums[len/2+i])
          
          Sometimes if it says illegal start of the type in the return line; basically you misplaced the brace
 */
+
+更简单的做法：
+public class Solution {
+    public int majorityElement(int[] nums) {
+        Arrays.sort(nums);
+        return nums[nums.length / 2];
+    }
+}
+因为如果length是偶数，nums.length/2前面有nums.length/2个元素，就算从0开始都是一样的，也会包括nums.length/2
+如果length是奇数，nums.length/2前面和后面有相同的数目的元素，都是（length-1）/2;
+所以无论怎样，都会渠道nums.length/2
