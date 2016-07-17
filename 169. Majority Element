@@ -1,0 +1,33 @@
+public class Solution {
+    public int majorityElement(int[] nums) {
+        Arrays.sort(nums);
+        int len=nums.length;
+        int result=0;
+        for(int i=0;i<len/2+1;i++)
+        if(nums[i]==nums[len/2+i])
+            {result=nums[i];
+            break;}
+         return result;
+        
+    }
+   
+}
+/*
+There are several things needed to pay attention to.
+1.upper index and bottom index
+if length is an even number;
+for example 6; it needs more than 3 same elements, which is four
+the idex of the  last element you need to check is 2; which is length/2-1
+if length is an odd number;
+for example 5;it needs more than 2 same elements, which is 3;
+the index of the last element you need to check is 2 ,which is length/2;
+Thus if you want to put it together, the index limit should be less than len/2+1;
+Further more;
+if I write like this;
+if(nums[i]==nums[len/2+i])
+          
+         return nums[i];
+         it will say missing return statement;
+         
+         Sometimes if it says illegal start of the type in the return line; basically you misplaced the brace
+*/
