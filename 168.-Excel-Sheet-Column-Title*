@@ -1,0 +1,41 @@
+/*
+首先了解了List，List分两种arraylist和treelist。用list动机是我不知道转化后数组的长度。写的程序很繁琐，写的过程中出现过的错误
+1. Z是26的时候需要特殊讨论，所有26的倍数都要拿出来单独讨论。。。 因为n%26=0， 但我们希望余数是26；
+
+2.你第一个放进arraylist中元素，对应array[0],但是对应最后转化后得array输出却是最末尾的，所以要用（i-1-j））
+2. 倒数第二行，之前我写的是 temp_final[j]=(char)(temp.remove(i-1-j));在这种情况下用remove用get都可以；
+但是要注意，如果你要是用remove（j）在这个例子中，也就是从0开始删，那么后面所有元素的索引都会一次次减一，程序会报错
+
+*/
+public class Solution {
+    public static String convertToTitle(int n) {
+	        if(n<=0)
+	        return null;
+	        List temp=new ArrayList();
+	        
+	        int i=0;
+	        while(n!=0)
+	        {int residual=0;
+	        if(n%26!=0)
+	        {residual=n%26;
+	        n=n/26;
+	        }
+	        else{
+	            residual=26;
+	            n=n/26-1;
+	        }
+	        temp.add((char)(residual-1+'A'));
+	       // int a=temp.size();
+	       // System.out.print(temp.get(i));
+	        i++;
+	        
+	        }
+	        
+	        char[] temp_final=new char[i];
+	        for(int j=0; j<i;j++)
+	        temp_final[j]=(char)(temp.get(i-1-j));
+	        return String.valueOf(temp_final);    
+	        
+	    }
+	
+}
