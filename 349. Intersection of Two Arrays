@@ -1,0 +1,47 @@
+/*
+first， I forget to sort the arrays
+Second, be carful in the while loop, the logic is and not nor
+Third; in the beginning I write like this:
+ {if(nums1[i]<nums2[j])
+     i++;
+     if(nums1[i]>nums2[j])
+     j++;
+     if(nums1[i]==nums2[j])
+     {reserve.add(nums1[i]);
+      i++;
+     j++;
+     For example, the length of nums1 is 2, nums2 is 3. nums2先取了3个，nums1只取了一个。但是如果nums1的第一个元素大于nums2的第三个元素
+     第8行执行完，j=3，它仍会执行第九行，这是就会报错 OutofIndex。因为nums2【3】溢出 
+*/
+public class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+    HashSet<Integer> reserve= new HashSet<Integer>();
+    int i=0;
+    int j=0;
+    Arrays.sort(nums1);
+    Arrays.sort(nums2);
+    while(i<nums1.length&&j<nums2.length)
+    {if(nums1[i]<nums2[j])
+     i++;
+     else if(nums1[i]>nums2[j])
+     j++;
+     else
+     {reserve.add(nums1[i]);
+      i++;
+     j++;
+     
+     }
+    }
+    int k=0;
+    int[] result=new int[reserve.size()];
+    for (Integer num:reserve)
+    {result[k]=num;
+     k++;
+        
+    }
+    return result;
+    
+    
+        
+    }
+}
