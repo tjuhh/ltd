@@ -1,0 +1,19 @@
+/*there is another way that you use bute force, but you need two for loop, which the time would be longer
+This way is referring to the solution in the leetcode
+*/
+public class Solution {
+    public int maxProfit(int[] prices) {
+        if(prices.length==0)
+        return 0;
+        int minPrice=prices[0];
+        int max_Profit=0;
+        for(int i=0;i<prices.length;i++)
+        if(prices[i]<minPrice)
+        minPrice=prices[i];
+        else
+        
+            max_Profit=((prices[i]-minPrice)>max_Profit)?(prices[i]-minPrice):max_Profit;
+        
+        return max_Profit;
+    }
+}
