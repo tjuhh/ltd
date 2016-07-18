@@ -1,4 +1,4 @@
-/*基本思想用一个hashset存起来
+/*基本思想用一个hashset存起来,需要额外空间
 */
 
 public class Solution {
@@ -13,5 +13,27 @@ public class Solution {
             
         }
         return false;
+    }
+}
+/*第二种可以看一下tutorial，需要注意的有一个方面
+就是比如只有一个元素1，自循环， 所以先移动node，再判断是不是fast==slow
+
+*/
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+      ListNode fast=head;
+      ListNode slow=head;
+      if(head==null)
+      return false;
+      while(fast!=null)
+      { if(fast.next==null)
+      return false;
+        fast=fast.next.next;
+       slow=slow.next;
+       if(fast==slow)
+       return true;
+          
+      }
+      return false;
     }
 }
