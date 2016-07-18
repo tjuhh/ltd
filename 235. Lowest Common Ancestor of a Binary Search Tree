@@ -1,0 +1,35 @@
+ /*
+ */
+public class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(root==null)
+        return null;
+        if(p==null)
+        return q;
+        if(q==null)
+        return p;
+        if(root.val==p.val|root.val==q.val)  // I forget this condition in the beginning, in the end if the root is 2, root.left
+                                             //is 2,then q=1;  basically the return would be null rather than 2
+        return root;
+        if(root.left==null)
+        {root=root.right;
+        return lowestCommonAncestor(root,p,q);
+            
+        }
+        else if(root.right==null)
+        {
+        return lowestCommonAncestor(root.left,p,q);
+        }
+        else
+        {   int a=Math.max(p.val,q.val);
+            int b=Math.min(p.val,q.val);
+            if(b<root.val&&a<root.val)   //Be careful that do not lose .val, another thing is that compared to root, rather than root.left or root.right
+            return lowestCommonAncestor(root.left,p,q);
+            else if(b<root.val&&a>root.val)
+            return root;
+            else
+            return lowestCommonAncestor(root.right,p,q);
+            
+        }
+    }
+}
