@@ -1,0 +1,38 @@
+/* If we want to use the recursive way, it is like this, but unfortunately time exceeds the limit。
+这个问题可以这么思考，对于n级台阶，你有两种方式，从n-1级或者n-2级向上爬，所以相当于method（n-1)+method(n-2)
+就算n－2级可以爬到n－1级，但是这又是一种新的方法。可以这么理解，有p种方法爬到n－2级，你一步跨两登；有q种方法爬到n－1级，
+你一步跨一登迈完，因为最后一步是不一样的，所以p和q就不可能有重复的。然后对于1级和2级要特殊处理。因为你这个递归需要知道前两个数
+才能计算
+*/
+public class Solution {
+    public int climbStairs(int n) {
+        
+        if(n>2)
+        return climbStairs(n-1)+climbStairs(n-2);
+        else if(n==2)
+        return 2;
+        else
+        return 1;
+    }
+}
+/*这是用循环的方法。用a，b两个数也行，只是这样用数组更好理解
+＊／
+public class Solution {
+    public int climbStairs(int n) {
+       int[] mem=new int[n];        
+        if(n==1)
+        mem[0]=1;
+       else if(n==2)
+        mem[1]=2;
+        else{
+            mem[0]=1;
+            mem[1]=2;
+        for(int i=2;i<n;i++)
+            
+        mem[i]=mem[i-1]+mem[i-2];
+
+    }
+    return mem[n-1];
+        
+    }
+}
