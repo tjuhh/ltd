@@ -45,3 +45,4 @@ public class Solution {
         
     }
 }
+可以考虑用两个hashset 时间复杂度会降为O（n）https://discuss.leetcode.com/topic/45685/three-java-solutions
