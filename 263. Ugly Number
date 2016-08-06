@@ -4,7 +4,7 @@ public class Solution {
         if(num<=0)
         return false;
         if(num==1)
-        return true;
+        return true;// it is not necessary
         while((num%2==0)|(num%3==0)|num%5==0){
         if(num%2==0)     
          num=num/2;
