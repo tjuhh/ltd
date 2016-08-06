@@ -12,8 +12,7 @@ public class Solution {
          num=num/3;
          if(num%5==0)
          num=num/5;
-         if(num==1)
-         break;
+        
     }
     return num==1;
     }
