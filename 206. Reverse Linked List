@@ -1,0 +1,23 @@
+
+核心思想是设计一个dummy Node；
+这个困难的地方在12行
+public class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode dummy= new ListNode(-1);
+    
+        ListNode cur=head;
+        if((head==null)||(head.next==null))
+        return head;
+        while(cur!=null)
+        {ListNode tmp=cur.next;//必须构造一个tmp node；因为cur.next指向的位置发生了变化， 如果没有这个tmp Node，那么当你用cur=cur.next想指向下一个元素;
+        //你指向的其实是dummmy.next.next
+         cur.next=dummy.next;
+         dummy.next=cur;
+         cur=tmp;
+            
+        }
+      
+        return dummy.next;
+        
+    }
+}
