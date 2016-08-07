@@ -20,7 +20,7 @@ public class Solution {
      if(s==null| t==null|s.length()!=t.length())
      return false;
      int lookup[]=new int[256];
-     for (int i=0;i<s.length();i++)
+     for (int i=0;i<s.length();i++)  //be careful it is not 256, it is s.length(0
      {lookup[(int)(s.charAt(i))]++;
      lookup[(int)(t.charAt(i))]--;
      }
