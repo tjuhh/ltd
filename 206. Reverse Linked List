@@ -21,7 +21,9 @@ public class Solution {
         
     }
 }
-recursive第一种方法但是更好理解，因为这道题其实是比如 1 ，2 ，3 ，4  这个方法是 1->2->3<-4;然后1->2<-3<-4
+recursive第一种方法但是更好理解，因为这道题其实是比如 1 ，2 ，3 ，4  这个方法是 1->2->3<-4;然后1->2<-3<-4 但是最后你需要指向原本的尾节点
+所以有一个tail； 让它在取最后一个元素时，指向尾节点。 这个题里，运用递归使tmp rest一直指向两个临近的节点，比如 tmp指向3， rest指向4； 
+tmp指向2； rest指向3
 public class Solution {
     private ListNode tail=new ListNode(-1);
     public ListNode reverseList(ListNode head) {
@@ -37,11 +39,53 @@ public class Solution {
       {   tail=tmp;
           return tmp;
         
-    }
+    }//为的是最后返回尾节点
     ListNode rest=helper(tmp.next);
     rest.next=tmp;
     tmp.next=null;
     return tmp;
     
+    }
+}
+
+第二种方法 很简单 上面那个 rest其实是移动的，应为返回的是tmp； 对于前一层递归其实就是tmp.next; 所以rest和tmp.next 是相等的
+所以这个返回值是没有意义的，因此我们完全可以用tmp.next来表示rest。
+public class Solution {
+    private ListNode tail=new ListNode(-1);
+    public ListNode reverseList(ListNode head) {
+   if(head==null||head.next==null)
+   return head;
+   helper(head);
+   return tail;
+  
+        
+    }
+    public ListNode helper(ListNode tmp)
+    { if(tmp.next==null)
+      {   tail=tmp;
+          return tmp;
+        
+    }//为的是最后返回尾节点
+    ListNode rest=helper(tmp.next);
+    tmp.next.next=tmp;//改成tmp.next
+    tmp.next=null;
+    return null;即使随便返回一个值都可以比如null
+    
+    }
+}
+
+
+
+所以干脆我们让返回值永远是尾节点，也就是是不移动的。
+public class Solution {
+    public ListNode reverseList(ListNode head) {
+         if(head == null || head.next == null){
+        return head;
+    }
+    ListNode rest = reverseList(head.next);//每次递归返回的其实都是尾节点，不动的；
+    head.next.next = head;
+    head.next = null;
+    return rest;
+        
     }
 }
