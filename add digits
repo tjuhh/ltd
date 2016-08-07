@@ -9,7 +9,7 @@ public class Solution {
         if(a>=10)
         a=addDigits(a);
         c=a+b;
-        return (c<10)? c :(c/10+c%10);
+        return (c<10)? c :(1+c%10);
         
     }
 }
