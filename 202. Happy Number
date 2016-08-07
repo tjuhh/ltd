@@ -35,3 +35,30 @@ public class Solution {
         return true;
     }
 }
+//第二次做的
+public class Solution {
+    public boolean isHappy(int n) {
+        if(n<=0)
+        return false;
+        Set<Integer> reserve= new HashSet<Integer>();
+        while(sqOfDigits(n)!=1)
+        {if(!reserve.add(sqOfDigits(n)))
+         break;
+         n=sqOfDigits(n);    
+        }
+        return sqOfDigits(n)==1;
+    }
+    public int sqOfDigits(int n)
+    { ArrayList<Integer> sq =new ArrayList<Integer>();
+      while(n/10!=0)
+      {sq.add(n%10);
+       n=n/10;
+      } 
+      sq.add(n%10);
+      int sum=0;
+      for (int i=0; i<sq.size();i++)
+      sum+=sq.get(i)*sq.get(i);
+      return sum;    
+      
+    }
+}
