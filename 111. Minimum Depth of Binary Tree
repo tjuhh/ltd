@@ -6,7 +6,8 @@
  *     TreeNode right;
  *     TreeNode(int x) { val = x; }
  * }
- 需要注意一下，和maximum depth of binary tree不一样 
+ 需要注意一下，和maximum depth of binary tree不一样,还是很容易写错，因为你需要考虑一边没有的情况，
+ 这个时候，加的不是0，是另外一边的branch的长度
  
  
  */
