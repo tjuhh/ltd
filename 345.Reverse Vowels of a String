@@ -1,0 +1,29 @@
+//第一个需要注意的是怎么把 character 存入set中
+可以用Character[]elements{''};be careful to include both uppercases can lowercases
+Then use Set<Character> reserve=new HashSet<Character>(Arrays.asList(elements));
+是String.valueOf 不是Strings 是Arrays rather than Array
+charAt()rather than[]
+
+
+
+
+public class Solution {
+    public String reverseVowels(String s) {
+        Character[] elements={'a','e','i','o','u','A','E','I','O','U'};
+        Set<Character> vowels=new HashSet<Character>(Arrays.asList(elements));
+        ArrayList<Character> reserve= new ArrayList<Character>();
+        ArrayList<Integer> count=new ArrayList<Integer>();
+        for(int i=0;i<s.length(); i++)
+        {if(vowels.contains(s.charAt(i)))
+         {reserve.add(s.charAt(i));
+         count.add(i);
+         }
+        }
+        char[] sToChar=s.toCharArray();
+        for(int i=count.size()-1;i>=0;i--) //be carful that it should be i--
+        sToChar[count.get(i)]=reserve.get(count.size()-1-i);
+      String result=String.valueOf(sToChar);
+        return result;    
+        
+    }
+}
