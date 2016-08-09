@@ -1,0 +1,29 @@
+public class Solution {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        
+        List<List<Integer>> result=new ArrayList<List<Integer>>();
+        if(root==null)
+        return result;//必须有这个检测。queue.offer（null）；会使queue的size变为1.否则，如果root==null；仍然会进入while循环；14行就会报错。
+        //
+        Queue<TreeNode> res=new LinkedList<TreeNode>();
+        res.offer(root);
+        while(!res.isEmpty()){
+            ArrayList<Integer> tmp=new ArrayList<Integer>();
+        int size=res.size();//不能再for中直接用res.size();因为你在for中cao
+        for(int i=0; i<size;i++){
+            TreeNode head=res.poll();
+            tmp.add(head.val);
+            
+            if(head.left!=null)
+            res.offer(head.left);
+            if(head.right!=null)
+            res.offer(head.right);
+        }
+        result.add(tmp);
+     }
+     return result;
+    }
+    //用queue主要考虑因为左节点先进，然后在poll的时候也是先出。在左节点出去后，里面有右节点，和左节点两个子节点。
+    右节点出去后。里面有左右节点的两个子节点。题目的意思是按顺序输出每一层的所有节点从左到右。
+    如果是[3,9,20,8,7,15,7],输出是[[3],[9,20],[4,8,15,7]]
+}
