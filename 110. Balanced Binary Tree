@@ -16,18 +16,23 @@ public class Solution {
         }
         int a=depthOfTree(root.left);
         int b=depthOfTree(root.right);
+        //
         if(Math.abs(a-b)<2)
         {if(isBalanced(root.left)&&isBalanced(root.right))
          return true;
-            
-        }
+         
       
         return false;
+        }
+         //可以简化成
+          return (Math.abs(a-b)<2&&isBalanced(root.left)&&isBalanced(root.right));
+        
     }
     public int depthOfTree(TreeNode root){
         if(root==null)
         return 0;  ／／0是因为你在a＝depthOfTree... 没有加1；否则可以是return －1；但是绝对不能省，因为你最底层的节点会是null
-      int depth=0;
+ 
+      //
       if (root.left==null&&root.right==null)
       return 1;
       if(root.left==null)
@@ -35,6 +40,8 @@ public class Solution {
       if(root.right==null)
       return 1+depthOfTree(root.left);
       return 1+Math.max(depthOfTree(root.left),depthOfTree(root.right));
+      //可以简化成
+      retrun 1+Math.max(depthOfTree(root.left),depthOfTree(root.right));
       
       
     }    
