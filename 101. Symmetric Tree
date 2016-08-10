@@ -24,3 +24,41 @@ public class Solution {
         
     }
 }
+Iterative way, kind of complex
+public class Solution {
+    public boolean isSymmetric(TreeNode root) {
+    return isMirror(root,root);
+    }
+    public boolean isMirror(TreeNode l, TreeNode r){
+        if(l==null&&r==null)
+        return true;
+        Queue<ArrayList<TreeNode>> tmp=new LinkedList<ArrayList<TreeNode>>();
+        ArrayList<TreeNode> res= new ArrayList<TreeNode> ();
+        res.add(l);
+        res.add(r);
+        tmp.offer(res);
+        while(!tmp.isEmpty()){
+            ArrayList<TreeNode>head=tmp.poll();
+  
+                TreeNode l1=head.get(0);
+	            TreeNode r1=head.get(1);
+	            if(l1==null&&r1==null)
+	            continue;
+            if(l1!=null&&r1!=null&&l1.val==r1.val){
+                ArrayList<TreeNode> temp1=new ArrayList<TreeNode>();
+                ArrayList<TreeNode> temp2=new ArrayList<TreeNode>();
+             temp1.add(l1.left);
+                temp1.add(r1.right);
+                tmp.offer(temp1);
+                temp2.add(l1.right);
+                temp2.add(r1.left);
+                tmp.offer(temp2);
+            }
+            else
+            return false;
+            
+            
+        }
+        return true;
+    }
+}
