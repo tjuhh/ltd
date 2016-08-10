@@ -1,0 +1,17 @@
+public class Solution {
+    public boolean hasPathSum(TreeNode root, int sum) {
+        if(root==null)
+        return false;
+        //必须讨论左右都是null
+        如果没有中间这一段，你会发现，如果left和 right 都为null，就都是false，那么即使root.val==sum,也会是false
+        if(root.left==null&&root.right==null)
+        return root.val==sum;
+       
+        //
+        else
+        return(hasPathSum(root.left,sum-root.val)|hasPathSum(root.right,sum-root.val));
+      
+    
+    }
+
+}
