@@ -62,3 +62,37 @@ public class Solution {
         return true;
     }
 }
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        
+        Queue<TreeNode> queue=new LinkedList<TreeNode>();
+        queue.offer(root);
+        queue.offer(root);//精髓在你先导入两个root进去，因为没有mirror，你需要创造mirror， 而且l和r需要两个一样的node
+        while(!queue.isEmpty()){
+            TreeNode l=queue.poll();
+            TreeNode r=queue.poll();
+            if(l==null&&r==null)
+            continue;
+            if(l!=null&&r!=null&&l.val==r.val){
+                queue.offer(l.left);
+                queue.offer(r.right);
+                queue.offer(l.right);
+                queue.offer(r.left);
+            }
+            else     //千万别忘了
+            return false;
+            
+        }
+        return true;
+        
+    }
+}
