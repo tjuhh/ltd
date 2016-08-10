@@ -1,0 +1,47 @@
+//Stack 既可以用empty也可以用isEmpty（）；没区别
+peek的话 你可以想成， 要么是sub2最上面的，要么就是sub1的front。 因为你的机制是，每次把sub1的全清空，放到sub2，所以如果sub2是空，
+意味着你front指的是最里面的。
+class MyQueue {
+    Stack<Integer> sub1= new Stack<Integer> ();
+    Stack<Integer> sub2= new Stack<Integer>();
+    int front;
+    // Push element x to the back of queue.
+    public void push(int x) {
+        
+       // sub1.push(x);
+        //if(sub1.empty())
+        //front=sub1.peek();
+        if(sub1.empty())
+        front=x;
+        sub1.push(x);
+        
+    }
+
+    // Removes the element from in front of queue.
+    public void pop() {
+        if(sub2.empty())
+        {while(!sub1.empty())
+         sub2.push(sub1.pop());
+            
+        }
+        sub2.pop();
+    }
+
+    // Get the front element.
+    public int peek() {
+        if(!sub2.empty())
+        return sub2.peek();
+        else 
+        return front;
+ 
+    }
+
+    // Return whether the queue is empty.
+    public boolean empty() {
+        if(sub1.empty()&&sub2.empty())
+        return true;
+        else
+        return false;
+        
+    }
+}
