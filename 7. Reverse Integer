@@ -1,0 +1,30 @@
+这个题和数字回文很像，但是你需要考虑overflow的问题，
+因为a=a*10+y%10;
+所以a*10+y%10<Integer.MAX_VALUE;
+也就是让新生成的不会overflow
+int的取值范围为（-2147483648~2147483647）严格来说因为你是把负数转换成整数-2147483648乘-1 仍然是-2147483648；不会变的。
+负数从-2147483647开始乘-1，会变成整数。你的positiveReverse对于-2147483648结果不会有影响
+public class Solution {
+    public int reverse(int x) {
+        if(x<=0)
+        return positiveReverse(-x)*(-1);
+        else
+        return positiveReverse(x);
+    }
+    public int positiveReverse(int y){
+        int a=0;
+      
+        while(y!=0){
+            if(a>((Integer.MAX_VALUE-y%10)/10))
+            return 0;
+            
+            a=a*10+y%10;
+            y/=10;
+            
+            
+            
+        }
+        return a;
+        
+    }
+}
