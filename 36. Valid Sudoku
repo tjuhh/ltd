@@ -48,3 +48,31 @@ public class Solution {
 		return true;
 	}
 }
+//第二种方法
+public class Solution {
+    public boolean isValidSudoku(char[][] board) {
+        boolean[][]rset=new boolean[9][9];
+        boolean[][]cset=new boolean[9][9];
+        boolean[][]sblset=new boolean[9][9]; //对应的是9个subblock，subblock编号使用i-i%3+j/3算出来的。如果我遍历所有元素，他的思想是如果
+        对应元素值是a；就让对应【行】【a】变成true，【a】列变成true；对应subblock【i-i%3+j/3】【a】变成true
+        for(int i=0;i<9;i++)
+            for (int j=0;j<9;j++){
+                if(board[i][j]!='.')
+                { int a=(int)(board[i][j]-'1');//不能是-‘0’ 因为你要使其对应范围是0-8
+                  if(cset[a][j]||rset[i][a]||sblset[i-i%3+j/3][a])
+                  return false;
+                  else{
+                  cset[a][j]=true;
+                  rset[i][a]=true;
+                  sblset[i-i%3+j/3][a]=true;
+                    
+                    
+                }
+                
+            }
+            
+            }
+        return true;
+        
+    }
+}
