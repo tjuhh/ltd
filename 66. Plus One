@@ -1,5 +1,7 @@
 
-核心是设置一个carry
+核心是设置一个carry，
+下面有一个更简洁的方法。如果你需要多出来一位比原先数组，基本意味着原来数组肯定全是9,99,999之类的。
+所以index=0时 为1； 其余各位都为0.
 
 public class Solution {
     public int[] plusOne(int[] digits) {
@@ -36,4 +38,27 @@ public class Solution {
         
         
     }
+}
+public class Solution {
+    public int[] plusOne(int[] digits) {
+       
+        for(int i=digits.length-1;i>=0;i--)
+        {if(digits[i]<9)
+         {digits[i]++;
+          return digits;
+             
+         }
+         else
+         
+             
+         digits[i]=0;//这部更为精妙，因为它的逻辑是只要不是9，就+1，退出。如果是9；开始下一次循环，digit【i-1]要不是9，仍然加1；退出。。
+         否则接着下一次循环。如果最后都没return，只能说明原先数列里全是9.
+             
+             
+         
+        }
+        int []numbers=new int[digits.length+1];
+        numbers[0]=1;
+        return numbers;
+}
 }
