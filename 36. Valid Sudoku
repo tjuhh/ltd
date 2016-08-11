@@ -1,0 +1,50 @@
+//数独规则是每一行或者每一列必须没有重复素质，然后总共九个sub square也没有重复的数字。
+第二种方法 更加巧妙，尤其是block这个地方，你会发现， 相当于第一个subblock 对应0，第二个sub block 对应全是1.
+public class Solution {
+	public boolean isValidSudoku(char[][] board) {
+   //计算行符不符合
+		for (int i = 0; i < board.length; i++) {
+			Set<Character> row = new HashSet<Character>();
+			for (int j = 0; j < board[0].length; j++) {
+
+				if (board[i][j] != '.')
+					if (!row.add(board[i][j]))
+						return false;
+
+			}
+
+		}
+		计算列符不符合
+		for (int j = 0; j < board.length; j++) {
+			Set<Character> col = new HashSet<Character>();
+			for (int i = 0; i < 9; i++) {
+
+				if (board[i][j] != '.')
+					if (!col.add(board[i][j]))
+						return false;
+
+			}
+
+		}
+计算每九个符不不符合
+		for (int i = 0; i < 7; i = i + 3) {
+
+			for (int j = 0; j < 7; j = j + 3) {
+				Set<Character> sub = new HashSet<Character>();
+				for (int k = i; k < i + 3; k++)
+					for (int l = j; l < j + 3; l++)
+						if (board[k][l] != '.') {
+							if (!sub.add(board[k][l])) {
+
+								return false;
+							}
+
+						}
+
+			}
+
+		}
+
+		return true;
+	}
+}
