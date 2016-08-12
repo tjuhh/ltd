@@ -1,0 +1,55 @@
+// 这道题不推荐第一种我自己做的方法，因为时间复杂度没有省多少，只是利用对称性。
+但是这里有一个问题就是你第一行对应的是i＝0；也就是元素个数其实是i＋1；所以对于j的运算，上界和下界i都需要加一。
+具体说来也就是第一个for，正常上界（i＋1）／2，这里是（i＋2）／2； 同理第二个for循环，下界上界i都得加一，包括第二个for循环，因为一般
+是i－j－1；但是这里上界变成i＋1；所以就是i－j；
+还有一个需要注意的是j的上下界是i；开始用的numRows...无语了
+
+public class Solution {
+    public List<List<Integer>> generate(int numRows) {
+       List<List<Integer>> result= new ArrayList<List<Integer>>();
+	        if(numRows<1)
+	        return result;
+	        for(int i=0;i<numRows;i++){
+	            List<Integer> element=new ArrayList<Integer>();
+	            element.add(1);
+	            
+	            if(i!=0){
+	            for(int j=1; j<i/2+1;j++){
+	            element.add(result.get(i-1).get(j-1)+result.get(i-1).get(j)); 
+	                
+	                    
+	            }   
+	           
+	            for (int j=(i+2)/2;j<(i+1);j++){
+	             element.add(element.get(i-j));      
+	            }
+	            }
+	                 result.add(element);
+	        }
+	     return result;
+    }
+  
+}
+//这种更好理解，不用对称性。所以如果是1行，就只有1；
+剩下行，开始是1，末尾是1；其他元素，是上一行i－1，j-1和i-1,j相加。同时你需要注意的也是正常是j《i-1;但是因为i＝0，
+对应i＋1=1个元素，所以最后是j<i
+public class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> result=new ArrayList<List<Integer>>();
+        if(numRows<1)
+        return result;
+        List<Integer> first=new ArrayList<Integer>();
+        first.add(1);
+        result.add(first);
+        for(int i=1;i<numRows;i++){
+            List<Integer> tmp=new ArrayList<Integer>();
+            tmp.add(1);
+            for(int j=1;j<i;j++){
+                tmp.add(result.get(i-1).get(j-1)+result.get(i-1).get(j));
+            }
+            tmp.add(1);
+            result.add(tmp);
+        }
+        return result;
+    }
+}
