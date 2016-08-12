@@ -1,0 +1,29 @@
+//这个做法很巧妙
+Each row is built in place, on top of the previous row, e.g. for k=3:
+
+1 0 0 0 // before the for loop
+1 1 0 0 // first iteration of outer loop, start at index 1: 0 + 1 = 1; done
+1 2 1 0 // 2nd iteration of outer loop, start at index 2: 0 + 1 = 1; 1 + 1 = 2; done
+1 3 3 1 // 3rd iteration of outer loop ...
+精髓在j是从i走，因为这样，tmpResult[i]开始时都为0；之前的tmpResult[i-1]都为1；所以这样tmpResult[i]可以一直为1
+所以这样 就不必再把最后一个元素单拿出来讨论了。
+public class Solution {
+    public List<Integer> getRow(int rowIndex) {
+        rowIndex=rowIndex+1;
+        int []tmpResult=new int[rowIndex];
+        List<Integer> result=new ArrayList<Integer>();
+        if(rowIndex<1)
+        return result;
+        tmpResult[0]=1;
+        
+        for(int i=1;i<rowIndex;i++)
+        {   for(int j=i;j>=1;j--)
+            tmpResult[j]+=tmpResult[j-1];
+            
+        }
+        for (int num:tmpResult)
+        result.add(num);
+        return result;
+        
+    }
+}
