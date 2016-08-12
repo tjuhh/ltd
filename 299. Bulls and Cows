@@ -1,0 +1,36 @@
+"11"
+"10"
+答案是"1A0B"而不是"1A1B"
+//下面那个是这道题的答案
+ppublic class Solution {
+    public String getHint(String secret, String guess) {
+        char a='0';
+        int bull=0;
+        int cow=0;
+        String result;
+        int[]res1=new int[10];
+        int[]res2=new int[10];
+        boolean []res3=new boolean[10];
+        for(int i=0;i<secret.length();i++){
+            int b=(int)(secret.charAt(i)-a);
+            int c=(int)(guess.charAt(i)-a);
+            if(b==c)
+            {bull++;
+            
+            }
+            else{
+            res1[b]++;
+            res2[c]++;
+            }
+        }
+        for(int i=0;i<10;i++){
+            if(res1[i]!=0&&res2[i]!=0)
+        
+            cow+=Math.min(res1[i],res2[i]);//Here it should not be just cow++; since for example 2211 nad 1122;the result is 0A2B.
+            So you need add the minimum value of these two values
+            
+        }
+        result=bull+"A"+cow+"B";
+        return result;
+    }
+}
