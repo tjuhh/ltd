@@ -1,0 +1,24 @@
+
+//
+public class Solution {
+    public boolean isValid(String s) {
+    Stack<Character> res=new Stack();
+    char[] sArray=s.toCharArray();
+    for(int i=0;i<sArray.length;i++)
+    if(sArray[i]=='('||sArray[i]=='{'||sArray[i]=='[')
+    res.push(sArray[i]);
+    else{
+    if(res.empty())
+    return false;
+    else
+    if((res.pop()-sArray[i])>2)//你需要看一下ASCII表，因为"([)]" are not.所以要有这个条件限制，
+    return false;
+    
+        
+    }
+    if(res.empty())
+    return true;
+    else
+    return false;
+    }
+}
