@@ -1,0 +1,68 @@
+//需要额外O（n）space的 不需要n=n%k; 因为你在角标那地方取余，所以就不需要了
+public class Solution {
+    public void rotate(int[] nums, int k) {
+     int tmp[]=new int[nums.length];
+     for(int i=0;i<nums.length;i++){
+         tmp[(i+k)%nums.length]=nums[i];// if it is tmp[i]=nums[(i+k)%nums.length]; it means you shift k to the left rahter than right
+         
+     }
+     for(int j=0;j<nums.length;j++){
+         nums[j]=tmp[j];
+     }
+        
+    }
+}
+//第二种方法比较巧妙,下面第一个是我做的。。。。第二个更好
+public class Solution {
+    public void rotate(int[] nums, int k) {
+        k=k%nums.length;
+        if(k==0)//这步不能省。。。。 fouze会出现（0，-1）
+        return;
+        
+     
+        reverse(nums,0,nums.length-1);
+        reverse(nums,0,k-1);
+        reverse(nums,k,nums.length-1);
+        
+        
+    }
+    public void reverse(int[]nums,int start, int end){
+
+        for (int i=start;i<(end+start)/2+1;i++){ 开始犯的错误是用的end-start，下面所有的情况都是
+            int tmp;
+            tmp=nums[i];
+            nums[i]=nums[end+start-i];
+            nums[end+start-i]=tmp;
+            
+        }
+        
+    }
+    
+}
+//第二种方法其实 只是reverse那部分不同
+public class Solution {
+    public void rotate(int[] nums, int k) {
+         k%=num.length;
+
+        
+     
+        reverse(nums,0,nums.length-1);
+        reverse(nums,0,k-1);
+        reverse(nums,k,nums.length-1);
+        
+        
+    }
+    public void reverse(int[]nums,int start, int end){
+     while(start<end){
+         int tmp=nums[start];
+         nums[start]=nums[end];
+         nums[end]=tmp;
+         start++;
+         end--;
+         
+         
+     }
+        
+    }
+    
+}
