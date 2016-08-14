@@ -1,0 +1,39 @@
+//第一种方法 不能这么做的原因主要是 你不知道nums中数值是多少
+public class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int[]result=new int[2];
+        int[]s=new int [nums.length];／／不应该是nums.length,而应该是max value in nums array
+
+        for(int i=0;i<nums.length;i++){
+            int tmp=target-nums[i];
+             if(s[tmp]!=0){
+            result[0]=Math.min(s[tmp],i);
+            result[1]=Math.max(s[tmp],i);
+            return result; 
+            
+             }
+            s[nums[i]]=i;
+        }
+        return result;
+    }
+}
+／／第二种方法 //这种比较好 不用回头再检查有没有重复元素了。
+public class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int[]result=new int[2];
+        Map<Integer,Integer>res=new HashMap<Integer,Integer>();
+        for(int i=0;i<nums.length;i++){
+            int tmp=target-nums[i];
+            if(res.containsKey(tmp)){
+                
+                result[0]=Math.min(res.get(tmp),i);
+                result[1]=Math.max(res.get(tmp),i);
+                break;
+            }
+            res.put(nums[i],i);
+            
+        }
+        return result;
+        
+    }
+}
