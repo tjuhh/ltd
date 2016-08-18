@@ -1,0 +1,68 @@
+public class Solution {
+    public int compareVersion(String version1, String version2) {
+        if(version1==null&&version2==null)
+        return 0;
+        if(version1==null)
+        return -1;
+        if(version2==null)
+        return 1;
+        char []v1=version1.toCharArray();
+        char []v2=version2.toCharArray();
+        int tmp1=0;
+        int tmp2=0;
+        int i=0;
+        int j=0;
+        ArrayList<Integer> res1=charToInteger(v1);
+        ArrayList<Integer> res2=charToInteger(v2);
+        while(i<res1.size()&&j<res2.size()){
+            if(res1.get(i)<res2.get(j))
+            return -1;
+            if(res1.get(i)>res2.get(j))
+            return 1;
+            else
+            {i++;
+             j++;
+                
+            }
+        }
+        if(i==res1.size()&&j==res2.size())
+        return 0;
+        if(i==res1.size())
+        {for(int k=i;k<res2.size();k++){
+            if(res2.get(k)!=0)
+            return -1;
+        }
+        return 0;
+            
+        }
+        else{
+            for(int k=i;k<res1.size();k++){
+            if(res1.get(k)!=0)
+            return 1;
+            
+        }
+        return 0;    
+        }
+            
+            
+            
+            
+        }
+        
+        
+    
+    public ArrayList charToInteger(char[] s){
+        ArrayList<Integer> result=new ArrayList<Integer>();
+        int tmp=0;
+        for(int i=0;i<s.length;i++){
+            if(s[i]!='.')
+            tmp=tmp*10+s[i]-'0';//开始忘了减去‘0’
+            else
+           { result.add(tmp);
+             tmp=0;}  //忘了tmp重新归0
+        }
+        result.add(tmp); 、、忘了需要把最后一个加上
+        return result;
+        
+    }
+}
