@@ -1,0 +1,30 @@
+public class Solution {
+    public boolean isIsomorphic(String s, String t) {
+           if(s==null&&t==null)
+        return true;
+        if(s==null||t==null||s.length()!=t.length())
+        return false;
+        HashMap<Character,Character> res1=new HashMap<Character,Character>();
+        HashMap<Character,Character> res2=new HashMap<Character,Character>();
+        char[] sToArray=s.toCharArray();
+        char[] tToArray=t.toCharArray();
+     
+        for(int i=0;i<sToArray.length;i++){
+            if((!res1.containsKey(sToArray[i]))&&(!res2.containsKey(tToArray[i]))){
+                res1.put(sToArray[i],tToArray[i]);
+                res2.put(tToArray[i],sToArray[i]);
+                
+            }
+            
+            else { if(res1.get(sToArray[i])==null||res2.get(tToArray[i])==null)
+            return false;
+              if(((res1.get(sToArray[i])!=tToArray[i])||(res2.get(tToArray[i])!=sToArray[i])))
+             return false;
+                
+            }
+            
+        }
+        return true;
+        
+    }
+}
