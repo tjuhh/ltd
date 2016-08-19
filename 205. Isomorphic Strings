@@ -16,7 +16,8 @@ public class Solution {
                 
             }
             
-            else { if(res1.get(sToArray[i])==null||res2.get(tToArray[i])==null)
+            else { if(res1.get(sToArray[i])==null||res2.get(tToArray[i])==null)//你必须要有这个判断，否则下个if会出现nullpointerexception，
+            //原因的话在overflow有人解释了 如果你Character和char比较，有个unopening box 过程，这个时候如果是空指针，就会出现这个exception
             return false;
               if(((res1.get(sToArray[i])!=tToArray[i])||(res2.get(tToArray[i])!=sToArray[i])))
              return false;
