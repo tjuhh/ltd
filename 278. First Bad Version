@@ -1,0 +1,19 @@
+public class Solution extends VersionControl {
+    public int firstBadVersion(int n) {
+        int low=1;
+        int high=n;
+        while(low<=high){
+            int middle=low+(high-low)/2;／／不要写成(low+high)/2,更容易溢出，实际上能减先减，leetcode二分查找略微简洁一点
+            if(isBadVersion(middle)){
+                if(middle==1||!isBadVersion(middle-1))
+                return middle;
+                else
+                high=middle-1;
+            }
+            if(!isBadVersion(middle))
+            low=middle+1;
+            
+        }
+        return -1;
+    }
+}
