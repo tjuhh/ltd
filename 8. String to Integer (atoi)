@@ -1,0 +1,36 @@
+//这道题是简单题中最难的了
+这道题如果+或-后面接的不是数字，就认为0；
+所以在while中  if((newstr.charAt(index)-'0')<0||(newstr.charAt(index)-'0')>9）要在溢出之前检验。否则像+-2过不去
+因为-的ascii编码值比‘0’还要小，newstr.charAt(index)-'0'=-3；肯定会溢出
+第二个错误实在溢出的时候必须要这么写，不能是
+Integer.MAX_VALUE<newstr.charAt(index)-'0'+10*total
+因为这时右边可能已经溢出了；虽然total此时还不够溢出，但是因为乘10就已经溢出了
+public class Solution {
+    public int myAtoi(String str) {
+        if(str==null|str.length()==0)
+        return 0;
+        int sign=1; int total=0;
+        int index=0;
+        String newstr=str.trim();
+     
+        if(newstr.charAt(index)=='+'|newstr.charAt(index)=='-')
+        {    
+            sign=(newstr.charAt(index)=='+'? 1:-1);
+         
+        index++;}
+   
+        
+        while(index<newstr.length()){
+             if((newstr.charAt(index)-'0')<0||(newstr.charAt(index)-'0')>9)
+            return total*sign;
+            if ((Integer.MAX_VALUE-newstr.charAt(index)+'0')/10<total)
+            return sign==1? Integer.MAX_VALUE:Integer.MIN_VALUE;
+           
+            total=10*total+newstr.charAt(index)-'0';
+            index++;
+            
+        }
+        return total*sign;
+        
+    }
+}
