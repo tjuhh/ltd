@@ -45,3 +45,45 @@ class MyStack {
         
     }
 }
+//pop地方写的更简洁
+class MyStack {
+    // Push element x onto stack.
+    int top;
+    Queue<Integer> q=new LinkedList<Integer>();
+    Queue<Integer> tmp=new LinkedList<Integer>();
+    public void push(int x) {
+        q.offer(x);
+        top=x;
+        
+    }
+
+    // Removes the element on top of the stack.
+    public void pop() {
+    if(q.isEmpty())
+    return ;
+    while(q.size()!=1){
+        top=q.poll();
+        tmp.offer(top);
+        
+    }
+    q.poll();
+    Queue<Integer> trans=q;
+    q=tmp;
+    tmp=trans;
+    }
+
+    // Get the top element.
+    public int top() {
+        return top;
+        
+    }
+
+    // Return whether the stack is empty.
+    public boolean empty() {
+        if(q.isEmpty())
+        return true;
+        else 
+        return false;
+        
+    }
+}
