@@ -1,0 +1,47 @@
+//可以看一下leetcode的tutorial，它有的地方写的更简洁
+class MyStack {
+    // Push element x onto stack.
+    int top;
+    Queue<Integer> q=new LinkedList<Integer>();
+    Queue<Integer> tmp=new LinkedList<Integer>();
+    public void push(int x) {
+        q.offer(x);
+        top=x;
+        
+    }
+
+    // Removes the element on top of the stack.
+    public void pop() {
+    if(q.isEmpty())
+    return ;
+    while(q.size()!=1){
+        tmp.offer(q.poll());
+        
+    }
+    q.poll();
+    while(!tmp.isEmpty()){
+    if(tmp.size()==1)
+    {top=tmp.poll();
+    q.offer(top);
+    }
+    else
+    q.offer(tmp.poll());
+    
+    }
+    }
+
+    // Get the top element.
+    public int top() {
+        return top;
+        
+    }
+
+    // Return whether the stack is empty.
+    public boolean empty() {
+        if(q.isEmpty())
+        return true;
+        else 
+        return false;
+        
+    }
+}
