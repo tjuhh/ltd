@@ -1,0 +1,23 @@
+//需要注意是删除掉头的特殊情况
+
+public class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode pointer1=head;
+        ListNode pointer2=head;
+        for(int i=0;i<n;i++){
+            pointer1=pointer1.next;
+        }
+        if(pointer1==null)
+        {head=head.next;
+        return head ;
+        }//删除掉头的特殊情况，这时你指针已经变成 null了
+        while(pointer1.next!=null){
+            pointer1=pointer1.next;
+            pointer2=pointer2.next;
+        }
+        ListNode tmp=pointer2.next;
+        pointer2.next=pointer2.next.next;
+        tmp=null;
+        return head;
+}
+}
