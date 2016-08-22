@@ -1,0 +1,23 @@
+public class Solution {
+    public int firstUniqChar(String s) {
+        
+        if (s==null)
+        return -1;
+        Set<Integer> tmp=new HashSet<Integer>();
+        int[]res=new int[26];
+        char[] sToChar=s.toCharArray();
+        for(int i=0; i<s.length();i++){
+            res[(sToChar[i]-'a')]++;
+        }
+        for(int i=0;i<26;i++){
+            if(res[i]>=2)
+            tmp.add(i);
+            
+        }
+        for(int i=0;i<s.length();i++){
+            if(tmp.add(sToChar[i]-'a'))
+            return i;
+        }
+        return -1;
+    }
+}
