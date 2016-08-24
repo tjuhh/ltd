@@ -33,3 +33,45 @@ public class Solution {
         return true;
     }
 }
+//更简洁的方法
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public boolean isPalindrome(ListNode head) {
+        if(head==null||head.next==null)
+        return true;
+        ListNode fast=head;
+        ListNode low=head;
+        ListNode pre=null;
+        ListNode cur=head;
+        while(fast!=null&&fast.next!=null){// you should be careful about that fast!=null must be in front of the statement fast.next!=null
+        //Or there may be a nullpointer exception
+            ListNode next=cur.next;
+            fast=fast.next.next;
+            low=low.next;
+            cur.next=pre;
+            pre=cur;
+            cur=next;
+        }
+        if(fast!=null){ //you cannot use fast.next==null Or there may be a null pointer exception. 
+        //Actually if you use while(a!=null&&a.next!=null) in the following you cannot use a.next. you can only use a, Or there may be
+        a null pointer exception.
+            cur=cur.next;
+        }
+      
+        while(cur!=null){
+            if(cur.val!=pre.val)
+            return false;
+            cur=cur.next;
+            pre=pre.next;
+            
+        }
+        return true;
+    }
+}
