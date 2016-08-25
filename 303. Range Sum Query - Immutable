@@ -1,0 +1,24 @@
+用sums是因为他说有many call；所以你不能在sumRange用for while loop i＋＋；
+　另外必须sums=new int[nums.length+1];
+        sums[0]=0;
+        如果你是sums=new int[nums.length];
+        sums[0]=nums[0];
+        你会发现以后处理会很麻烦。 你会发现第一种方法是默认如果nums＝＝null，那么结果就是0.像下面这种，处理null就会很麻烦
+
+
+public class NumArray {
+       int [] sums;
+    public NumArray(int[] nums) {
+        sums=new int[nums.length+1];
+        sums[0]=0;
+        
+        for(int i=1;i<nums.length+1;i++){
+            sums[i]+=nums[i-1]+sums[i-1];
+        }
+        
+    }
+
+    public int sumRange(int i, int j) {
+       return sums[j+1]-sums[i];
+    }
+}
