@@ -1,3 +1,5 @@
+//设计一个dummy node， 第二点 因为return dummy； 所以 你还得令cur＝dummy 最后一点；如果删除的话cur是不动的；
+否则的话你相当于一下走了两个节点
 public class Solution {
     public ListNode removeElements(ListNode head, int val) {
         ListNode dummy=new ListNode(-1);
