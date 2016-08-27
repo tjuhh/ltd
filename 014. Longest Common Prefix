@@ -1,0 +1,42 @@
+//我的作法，比较需要注意的是 如果只有一个元素，结果是它自身，而不是“”，所以一个元素要单独拿出来讨论。
+／／可以看一下leetcode答案，给了四种作法。不错。注意一下 函数的运用，像substring， indexOf
+//indexOF(string)有的话返回第一个characer的index；否则－1；所以！＝0包含两种情况：没string和有但是可能不在开头
+//subString(a,b)是不包括b的
+／／第二种方法i == strs[j].length() 意思是i已经比某个string要长了，所以必须return了
+／／最后一种方法binary search最快的 String.startsWith(String)这个是判断是不是startswith的最好方法。你要先求出
+string的最小长度int minLen = Integer.MAX_VALUE;
+    for (String str : strs)
+        minLen = Math.min(minLen, str.length());
+        ／／因为后面有  String str1 = strs[0].substring(0,len);否则可能溢出。
+public class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        if(strs.length==1)
+        return strs[0];
+        if(strs.length==0)
+        return "";
+        String result=commonPrefix(strs[0],strs[1]);
+        
+        for(int i=2;i<strs.length;i++){
+            
+            result=commonPrefix(result,strs[i]);
+            
+        }
+        return result;
+        
+    }
+    public String commonPrefix(String a, String b){
+       String result="";
+       if(a.length()==0||b.length()==0)
+        return result;
+        int length=a.length()<b.length()?a.length():b.length();
+        for(int i=0;i<length;i++){
+            if(a.charAt(i)!=b.charAt(i))
+            break;
+            result+=a.charAt(i);
+            
+            
+            
+        }
+        return result;
+    }
+}
