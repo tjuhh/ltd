@@ -1,0 +1,21 @@
+//这个题需要几个值得注意的地方： 第一个unsigned shift只有right shift>>>,没有unsigned left shift<<<.
+第二个表达方式没有n>>;只有n>>1;n>>>1;
+第三个，就是怎么表达／2；＊2；和取一个数的最后一位（n&1)
+第四个：>> << >>>不适用于negative odd numbers；你用－3想一下就知道了，－1（11111111）右移还是－1；
+第五个>>>区别就是移出来的位都用0添。 比如－4用32位表示11111111111111111111111111111100；
+>>1是11111111111111111111111111111110；>>>1是01111111111111111111111111111110
+
+
+public class Solution {
+    // you need treat n as an unsigned value
+    public int reverseBits(int n) {
+        int sum=0;
+        for(int i=0;i<32;i++){
+            sum<<=1;//sum=sum<<1;
+            sum+=n&1;
+            n>>>=1;
+        }
+            
+        return sum;
+    }
+}
