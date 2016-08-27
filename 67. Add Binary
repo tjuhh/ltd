@@ -1,0 +1,46 @@
+\\开始想法是直接变成二进制加法，但是有一个问题是 string没有溢出的问题。 这个题for loop那可以用while 代替，while中再有一个if（blength<1）
+则那位变为0；也可以。 这个题要注意两个，第一个就是前面添0 也就是从index=0开始填到aLength-bLength-1; 第二个就是sum有0,1,2,3这四种情况，每种情况
+都最好重置carry（尽管0可以不需要考虑）
+
+public class Solution {
+    public String addBinary(String a, String b) {
+        if(a==null||a.length()==0)
+        return b;
+        if(b==null||b.length()==0)
+        return a;
+        int aLength=a.length();
+        int bLength=b.length();
+        if(aLength<bLength)
+        return addBinary(b,a);//不知道长度常用的技巧
+        int carry=0;
+        char[] aToArray=a.toCharArray();
+        char[] bToArray=new char[aLength];
+        for(int i=0;i<aLength-bLength;i++)
+        bToArray[i]='0';
+        for(int i=aLength-bLength; i<aLength;i++)
+        bToArray[i]=b.charAt(i-aLength+bLength);
+        
+        for(int i=aLength-1;i>=0;i--){
+            
+        int  sum=aToArray[i]-'0'+bToArray[i]-'0'+carry;
+            if(sum==0)
+            aToArray[i]='0';
+            else if(sum==1)
+            {aToArray[i]='1';
+            carry=0;
+            }
+            else if(sum==2)
+            { aToArray[i]='0';
+            carry=1;
+                
+            }
+            else{
+                aToArray[i]='1';
+                carry=1;
+            }
+        }
+        if (carry==1)
+        return '1'+String.valueOf(aToArray);
+        return String.valueOf(aToArray);
+    }
+}
